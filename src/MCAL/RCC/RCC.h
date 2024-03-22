@@ -9,9 +9,15 @@
 #ifndef RCC_H_
 #define RCC_H_
 
-#include "STD_Types.h"
-#include "Masks.h"
+#include "Libraries/Masks.h"
+#include "Libraries/STD_Types.h"
 
+
+/*Peripherals Codes*/
+#define AHB1_Code       1         
+#define AHB2_Code       2
+#define APB1_Code       3
+#define APB2_Code       4 
 
 /*Availabe Clocks*/
 #define Clock_HSI           Reg_Mask_bit0
@@ -48,8 +54,7 @@
 #define PowerMode_LowPwr    0
 
 
-/*Peripherals
-****************
+/*Peripherals*/
 
 /*AHB1 Peripherals*/
 #define Peri_GPIOA          CONCAT(AHB1_Code, Reg_Mask_bit0)
@@ -161,9 +166,9 @@ typedef enum
 
 /**
  *@brief  : Let's the user Enable/Disable a clock. A clock that is selected as a system clock cannot be 
-            disabled before switching to another sytem clock.
+ *          disabled before switching to another sytem clock.
  *@param  : Clock name -> CLock_HSE, CLock_HSI, CLock_PLL, CLock_PLLI2S, CLock_RTC
-          : The status required -> ClockStatus_Enable or ClockStatus_Disable
+ *        : The status required -> ClockStatus_Enable or ClockStatus_Disable
  *@return : RCC Error Status               
  */
  RCC_errors_t RCC_ControlClock(uint32_t Clock, uint8_t CLockStatus);
@@ -216,5 +221,7 @@ typedef enum
  *@return : Error Status               
  */
  RCC_errors_t RCC_ConfigurePrescaler(uint32_t PeriPreSc, uint32_t PreScaler);
+
+ RCC_errors_t RCC_NewControlPeripheralClock(uint64_t Peri, uint32_t PeriStatus, uint32_t PowerMode );
 
 #endif /* RCC_H_ */

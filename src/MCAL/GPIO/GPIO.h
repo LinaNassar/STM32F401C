@@ -142,17 +142,32 @@ typedef enum
     GPIO_error_NuLLPtr,
     GPIO_error_WrongPort,
     GPIO_error_WrongPin,
-    GPIO_error_WrongMode,
+    GPIO_error_WrongCfg,
     GPIO_error_WrongSpeed,
     GPIO_error_WrongAF,
 
 }GPIO_errors_t;
 
-
+/**
+ * @brief   : Initializes the GPIO Pin as per provided in GPIO_Pin_t struct, this icludes: Pin Cfgr,
+ *            speed & alternate finction if applicable.
+ * @param   : Address of Pin_Config, the initializaiton struct.
+ * @return  : GPIO_errors_t
+ */
 GPIO_errors_t GPIO_init(GPIO_Pin_t *Pin_Config);
 
-GPIO_errors_t GPIO_SetPinValue(void *GPIO_Port, uint32_t GPIO_Pin); /*GPIO_Pin0_Set || GPIO_Pin0_Reset*/
+/**
+ * @brief   : Controls the status of an output GPIO Pin to set(High) or reset(Low).
+ * @param   : Port of the PIn, the Pin number and status included, ex:GPIO_Pin0_Set || GPIO_Pin0_Reset
+ * @return  : GPIO_errors_t
+ */
+GPIO_errors_t GPIO_SetPinValue(void *GPIO_Port, uint32_t GPIO_Pin); 
 
+/**
+ * @brief   : Gets the current value of an input GPIO Pin and assigns it in Pinvalue.
+ * @param   : Port of the Pin, the Pin number and an address to variable to hold the value of the pin
+ * @return  : GPIO_errors_t
+ */
 GPIO_errors_t GPIO_GetPinValue(void *GPIO_Port, uint32_t GPIO_Pin, uint32_t *PinValue); /*GPIO_Pin0_Get*/
 
 

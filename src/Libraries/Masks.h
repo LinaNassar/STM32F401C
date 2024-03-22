@@ -6,6 +6,7 @@
 /*Bits Offset factor in Shift*/
 #define Reg_Offset_2bit      2
 #define Reg_Offset_4bit      4
+#define Reg_Offset_8bit      8
 
 /*Register 1-Bit Shift*/
 #define Reg_bit0            0
@@ -42,22 +43,22 @@
 #define Reg_bit31           31
 
 /*Register 2-Bit Shift*/
-#define Reg_bit01           0
-#define Reg_bit23           2
-#define Reg_bit45           4
-#define Reg_bit67           6
-#define Reg_bit89           8
-#define Reg_bit1011         10
-#define Reg_bit1213         12
-#define Reg_bit1415         14
-#define Reg_bit1617         16
-#define Reg_bit1819         18
-#define Reg_bit2021         20
-#define Reg_bit2223         22
-#define Reg_bit2425         24
-#define Reg_bit2627         26
-#define Reg_bit2829         28
-#define Reg_bit3031         30        
+#define Reg_bit0_1           0
+#define Reg_bit2_3           2
+#define Reg_bit4_5           4
+#define Reg_bit6_7           6
+#define Reg_bit8_9           8
+#define Reg_bit10_11         10
+#define Reg_bit12_13         12
+#define Reg_bit14_15         14
+#define Reg_bit16_17         16
+#define Reg_bit18_19         18
+#define Reg_bit20_21         20
+#define Reg_bit22_23         22
+#define Reg_bit24_25         24
+#define Reg_bit26_27         26
+#define Reg_bit28_29         28
+#define Reg_bit30_31         30        
 
 /*1-bit Masks for a 32bit register*/
 #define Reg_Mask_1bit       0x00000001

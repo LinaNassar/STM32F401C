@@ -50,11 +50,7 @@
 #define HSI_Freq        16   
 #define HSE_Freq        25
 
-/*Peripherals Codes*/
-#define AHB1_Code       1         
-#define AHB2_Code       2
-#define APB1_Code       3
-#define APB2_Code       4
+
 
 
 /*Peripherals Prescalers Mask*/
@@ -83,35 +79,35 @@ typedef struct
     uint32_t CIR;   
     uint32_t AHB1RSTR; 
     uint32_t AHB2RSTR; 
-    uint32_t reserved;    
-    uint32_t reserved;
+    uint32_t reserved0;    
+    uint32_t reserved1;
     uint32_t APB1RSTR; 
     uint32_t APB2RSTR; 
-    uint32_t reserved; 
-    uint32_t reserved; 
+    uint32_t reserved2; 
+    uint32_t reserved3; 
     uint32_t AHB1ENR;    
     uint32_t AHB2ENR;
-    uint32_t reserved;
-    uint32_t reserved;
+    uint32_t reserved4;
+    uint32_t reserved5;
     uint32_t APB1ENR; 
     uint32_t APB2ENR; 
-    uint32_t reserved;
-    uint32_t reserved;    
+    uint32_t reserved6;
+    uint32_t reserved7;    
     uint32_t AHB1LPENR;    
     uint32_t AHB2LPENR;
-    uint32_t reserved;
-    uint32_t reserved;
+    uint32_t reserved8;
+    uint32_t reserved9;
     uint32_t APB1LPENR;
     uint32_t APB2LPENR;
-    uint32_t reserved;
-    uint32_t reserved;
+    uint32_t reserved10;
+    uint32_t reserved11;
     uint32_t BDCR;
     uint32_t CSR;
-    uint32_t reserved;
-    uint32_t reserved;
+    uint32_t reserved12;
+    uint32_t reserved13;
     uint32_t SSCGR;
     uint32_t PLLI2SCFGR;
-    uint32_t reserved;
+    uint32_t reserved14;
     uint32_t DCKCFGR;
 }RCC_Reg_t;
  
@@ -121,12 +117,12 @@ static RCC_Reg_t * const RCC = (volatile RCC_Reg_t * const)(RCC_Add);
 
 
 /*Static Functions Prototypes*/
-static void RCC_GetSysClock(uint32_t * SysClock);
+//static void RCC_GetSysClock(uint32_t * SysClock);
 
 
 RCC_errors_t RCC_ControlClock(uint32_t Clock, uint8_t CLockStatus)
 {
-    uint8_t  Loc_SysClockVal, Loc_AllowDisableFlag=1;
+    //uint8_t  Loc_SysClockVal, Loc_AllowDisableFlag=1;
     uint32_t Loc_RegisterTempVal;
     RCC_errors_t Ret_ControlClock = RCC_enuOk;
     
@@ -317,7 +313,7 @@ RCC_errors_t RCC_ControlPeripheralClock(uint64_t Peri, uint32_t PeriStatus, uint
 {
     RCC_errors_t Ret_CtrlPeri= RCC_enuOk;
     uint8_t Loc_PerSwitch;
-    uint32_t Loc_RegTempValue;
+    uint32_t Loc_RegTempValue=0;
 
     /*Check Peripheral*/
     if(Peri < 0xFFFFFFFF)
@@ -347,18 +343,22 @@ RCC_errors_t RCC_ControlPeripheralClock(uint64_t Peri, uint32_t PeriStatus, uint
                 case AHB1_Code:
                     Loc_RegTempValue=RCC->AHB1ENR;
                     Loc_RegTempValue |= ((uint32_t)Peri);
+                    RCC->AHB1ENR = Loc_RegTempValue;
                     break;
                 case AHB2_Code:
                     Loc_RegTempValue=RCC->AHB2ENR;
                     Loc_RegTempValue |= ((uint32_t)Peri);
+                    RCC->AHB2ENR = Loc_RegTempValue;
                     break;
                 case APB1_Code:
                     Loc_RegTempValue=RCC->APB1ENR;
                     Loc_RegTempValue |= ((uint32_t)Peri);
+                    RCC->APB1ENR = Loc_RegTempValue;
                     break;
                 case APB2_Code:
                     Loc_RegTempValue=RCC->APB2ENR;
                     Loc_RegTempValue |= ((uint32_t)Peri);
+                    RCC->APB2ENR = Loc_RegTempValue;
                     break;
                 default:
                     break;
@@ -370,20 +370,24 @@ RCC_errors_t RCC_ControlPeripheralClock(uint64_t Peri, uint32_t PeriStatus, uint
                 switch (Loc_PerSwitch)
                 {
                 case AHB1_Code:
-                    Loc_RegTempValue=RCC->AHB1ENR;
+                    Loc_RegTempValue= RCC->AHB1ENR;
                     Loc_RegTempValue &= (~((uint32_t)Peri));
+                    RCC->AHB1ENR= Loc_RegTempValue;
                     break;
                 case AHB2_Code:
-                    Loc_RegTempValue=RCC->AHB2ENR;
+                    Loc_RegTempValue= RCC->AHB2ENR;
                     Loc_RegTempValue &= (~((uint32_t)Peri));
+                    RCC->AHB2ENR= Loc_RegTempValue;
                     break;
                 case APB1_Code:
                     Loc_RegTempValue=RCC->APB1ENR;
                     Loc_RegTempValue &= (~((uint32_t)Peri));
+                    RCC->APB1ENR= Loc_RegTempValue;
                     break;
                 case APB2_Code:
                     Loc_RegTempValue=RCC->APB2ENR;
                     Loc_RegTempValue &= (~((uint32_t)Peri));
+                    RCC->APB2ENR= Loc_RegTempValue;
                     break;
                 default:
                     break;
@@ -403,18 +407,22 @@ RCC_errors_t RCC_ControlPeripheralClock(uint64_t Peri, uint32_t PeriStatus, uint
                 case AHB1_Code:
                     Loc_RegTempValue=RCC->AHB1LPENR;
                     Loc_RegTempValue |= ((uint32_t)Peri);
+                    RCC->AHB1LPENR= Loc_RegTempValue;
                     break;
                 case AHB2_Code:
                     Loc_RegTempValue=RCC->AHB2LPENR;
                     Loc_RegTempValue |= ((uint32_t)Peri);
+                    RCC->AHB2LPENR= Loc_RegTempValue;
                     break;
                 case APB1_Code:
                     Loc_RegTempValue=RCC->APB1LPENR;
                     Loc_RegTempValue |= ((uint32_t)Peri);
+                    RCC->APB1LPENR= Loc_RegTempValue;
                     break;
                 case APB2_Code:
                     Loc_RegTempValue=RCC->APB2LPENR;
                     Loc_RegTempValue |= ((uint32_t)Peri);
+                    RCC->APB2LPENR= Loc_RegTempValue;
                     break;
                 default:
                     break;
@@ -428,18 +436,22 @@ RCC_errors_t RCC_ControlPeripheralClock(uint64_t Peri, uint32_t PeriStatus, uint
                 case AHB1_Code:
                     Loc_RegTempValue=RCC->AHB1LPENR;
                     Loc_RegTempValue &= (~((uint32_t)Peri));
+                    RCC->AHB1LPENR= Loc_RegTempValue;
                     break;
                 case AHB2_Code:
                     Loc_RegTempValue=RCC->AHB2LPENR;
                     Loc_RegTempValue &= (~((uint32_t)Peri));
+                    RCC->AHB2LPENR= Loc_RegTempValue;
                     break;
                 case APB1_Code:
                     Loc_RegTempValue=RCC->APB1LPENR;
                     Loc_RegTempValue &= (~((uint32_t)Peri));
+                    RCC->APB1LPENR= Loc_RegTempValue;
                     break;
                 case APB2_Code:
                     Loc_RegTempValue=RCC->APB2LPENR;
                     Loc_RegTempValue &= (~((uint32_t)Peri));
+                    RCC->APB2LPENR= Loc_RegTempValue;
                     break;
                 default:
                     break;
@@ -456,6 +468,7 @@ RCC_errors_t RCC_ControlPeripheralClock(uint64_t Peri, uint32_t PeriStatus, uint
 
     return Ret_CtrlPeri;
 }
+
 
 RCC_errors_t RCC_ConfigurePrescaler(uint32_t PeriPreSc, uint32_t Prescaler)
 {   
