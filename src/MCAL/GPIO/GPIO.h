@@ -66,43 +66,9 @@
 
 
 
-/*GPIO Bits SET*/
-#define GPIO_Pin0_Set           Reg_Mask_bit0                 
-#define GPIO_Pin1_Set           Reg_Mask_bit1                   
-#define GPIO_Pin2_Set           Reg_Mask_bit2                   
-#define GPIO_Pin3_Set           Reg_Mask_bit3                   
-#define GPIO_Pin4_Set           Reg_Mask_bit4                   
-#define GPIO_Pin5_Set           Reg_Mask_bit5                   
-#define GPIO_Pin6_Set           Reg_Mask_bit6                   
-#define GPIO_Pin7_Set           Reg_Mask_bit7                   
-#define GPIO_Pin8_Set           Reg_Mask_bit8                   
-#define GPIO_Pin9_Set           Reg_Mask_bit9                   
-#define GPIO_Pin10_Set          Reg_Mask_bit10                   
-#define GPIO_Pin11_Set          Reg_Mask_bit11                   
-#define GPIO_Pin12_Set          Reg_Mask_bit12                   
-#define GPIO_Pin13_Set          Reg_Mask_bit13                   
-#define GPIO_Pin14_Set          Reg_Mask_bit14                   
-#define GPIO_Pin15_Set          Reg_Mask_bit15                   
-
-
-/*GPIO Bits Reset*/
-#define GPIO_Pin0_Reset         Reg_Mask_bit16       
-#define GPIO_Pin1_Reset         Reg_Mask_bit17       
-#define GPIO_Pin2_Reset         Reg_Mask_bit18       
-#define GPIO_Pin3_Reset         Reg_Mask_bit19       
-#define GPIO_Pin4_Reset         Reg_Mask_bit20       
-#define GPIO_Pin5_Reset         Reg_Mask_bit21       
-#define GPIO_Pin6_Reset         Reg_Mask_bit22       
-#define GPIO_Pin7_Reset         Reg_Mask_bit23       
-#define GPIO_Pin8_Reset         Reg_Mask_bit24       
-#define GPIO_Pin9_Reset         Reg_Mask_bit25       
-#define GPIO_Pin10_Reset        Reg_Mask_bit26
-#define GPIO_Pin11_Reset        Reg_Mask_bit27
-#define GPIO_Pin12_Reset        Reg_Mask_bit28
-#define GPIO_Pin13_Reset        Reg_Mask_bit29
-#define GPIO_Pin14_Reset        Reg_Mask_bit30 
-#define GPIO_Pin15_Reset        Reg_Mask_bit31
- 
+/*GPIO Pin States*/
+#define GPIO_State_Set          0
+#define GPIO_State_Reset        16
 
 /*Alternate Functions*/        
 #define GPIO_AF_non             0x0
@@ -149,22 +115,23 @@ typedef enum
 }GPIO_errors_t;
 
 /**
- * @brief   : Initializes the GPIO Pin as per provided in GPIO_Pin_t struct, this icludes: Pin Cfgr,
- *            speed & alternate finction if applicable.
- * @param   : Address of Pin_Config, the initializaiton struct.
+ * @brief   : Initializes the GPIO Pin as per provided in GPIO_Pin_t struct, this includes: Pin Cfgr,
+ *            speed & alternate function if applicable.
+ * @param   : Address of Pin_Config, the initialization struct.
  * @return  : GPIO_errors_t
  */
 GPIO_errors_t GPIO_init(GPIO_Pin_t *Pin_Config);
 
 /**
  * @brief   : Controls the status of an output GPIO Pin to set(High) or reset(Low).
- * @param   : Port of the PIn, the Pin number and status included, ex:GPIO_Pin0_Set || GPIO_Pin0_Reset
+ * @param   : Port of the PIn, the Pin number and the Required State.
+ *            Ex: GPIO_PortA, GPIO_Pin0 , GPIO_State_High
  * @return  : GPIO_errors_t
  */
-GPIO_errors_t GPIO_SetPinValue(void *GPIO_Port, uint32_t GPIO_Pin); 
+GPIO_errors_t GPIO_SetPinState(void *GPIO_Port, uint32_t GPIO_Pin, uint8_t GPIO_State);
 
 /**
- * @brief   : Gets the current value of an input GPIO Pin and assigns it in Pinvalue.
+ * @brief   : Gets the current value of an input GPIO Pin and assigns it in Pin value.
  * @param   : Port of the Pin, the Pin number and an address to variable to hold the value of the pin
  * @return  : GPIO_errors_t
  */

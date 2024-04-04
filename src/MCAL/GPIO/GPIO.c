@@ -132,7 +132,7 @@ GPIO_errors_t GPIO_init(GPIO_Pin_t *Pin_Config)
     return Ret_GpioInit;
 }
 
-GPIO_errors_t GPIO_SetPinValue(void *GPIO_Port, uint32_t GPIO_Pin) 
+GPIO_errors_t GPIO_SetPinState(void *GPIO_Port, uint32_t GPIO_Pin, uint8_t GPIO_State ) 
 {
     GPIO_errors_t Ret_SetPinValue = GPIO_error_Ok;
 
@@ -147,7 +147,7 @@ GPIO_errors_t GPIO_SetPinValue(void *GPIO_Port, uint32_t GPIO_Pin)
     // else 
     if(Ret_SetPinValue == GPIO_error_Ok)
     {
-        ((GPIO_Reg_t*)(GPIO_Port))->BSSR= GPIO_Pin;
+        ((GPIO_Reg_t*)(GPIO_Port))->BSSR= ( (1<<GPIO_Pin) << GPIO_State);
     }
     return Ret_SetPinValue;
 }
