@@ -136,5 +136,30 @@
   "C_Cpp_Runner.useLeakSanitizer": false,
   "C_Cpp_Runner.showCompilationTime": false,
   "C_Cpp_Runner.useLinkTimeOptimization": false,
-  "C_Cpp_Runner.msvcSecureNoWarnings": false
+  "C_Cpp_Runner.msvcSecureNoWarnings": false,
+  "cSpell.words": [
+    "CALIB",
+    "Cfgr",
+    "GPIO",
+    "Ledinit",
+    "Leds",
+    "MCAL",
+    "MODER",
+    "Nassar",
+    "Numof",
+    "OTYPER",
+    "PUPDR",
+    "runnablecb",
+    "Swinit",
+    "Systick",
+    "Systickcbf",
+    "Tciks"
+  ],
+  "files.associations": {
+    "systick.h": "c",
+    "scheduler_config.h": "c",
+    "gpio.h": "c",
+    "rcc.h": "c",
+    "led.h": "c"
+  }
 }

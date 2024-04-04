@@ -166,7 +166,7 @@ typedef enum
 
 /**
  *@brief  : Let's the user Enable/Disable a clock. A clock that is selected as a system clock cannot be 
- *          disabled before switching to another sytem clock.
+ *          disabled before switching to another system clock.
  *@param  : Clock name -> CLock_HSE, CLock_HSI, CLock_PLL, CLock_PLLI2S, CLock_RTC
  *        : The status required -> ClockStatus_Enable or ClockStatus_Disable
  *@return : RCC Error Status               
