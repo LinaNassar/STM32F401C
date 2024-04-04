@@ -40,22 +40,22 @@ typedef enum
 }NVIC_errors_t;
 
 
-NVIC_errors_t NVIC_EnableIRQ(NVIC_Interrupts_t IRQn); //Done
+NVIC_errors_t NVIC_EnableIRQ(NVIC_Interrupts_t IRQn); 
 
-NVIC_errors_t NVIC_DisableIRQ(NVIC_Interrupts_t IRQn); //Done
+NVIC_errors_t NVIC_DisableIRQ(NVIC_Interrupts_t IRQn); 
 
-NVIC_errors_t NVIC_SetPendingIRQ(NVIC_Interrupts_t IRQn); //Done
+NVIC_errors_t NVIC_SetPendingIRQ(NVIC_Interrupts_t IRQn); 
 
-NVIC_errors_t NVIC_ClearPendingIRQ(NVIC_Interrupts_t IRQn); //Done
+NVIC_errors_t NVIC_ClearPendingIRQ(NVIC_Interrupts_t IRQn); 
 
-NVIC_errors_t NVIC_GetPendingIRQ(NVIC_Interrupts_t IRQn, uint32_t *IRQPendingStatus); //Done
+NVIC_errors_t NVIC_GetPendingIRQ(NVIC_Interrupts_t IRQn, uint32_t *IRQPendingStatus); 
 
-NVIC_errors_t NVIC_GetActive(NVIC_Interrupts_t IRQn, uint32_t *IRQActiveStatus); //Done
+NVIC_errors_t NVIC_GetActive(NVIC_Interrupts_t IRQn, uint32_t *IRQActiveStatus); 
 
 NVIC_errors_t NVIC_SetPriority(NVIC_Interrupts_t IRQn, uint8_t PremptPriority, uint8_t SubPriority);
 
 NVIC_errors_t NVIC_GetPriority(NVIC_Interrupts_t IRQn);
 
-NVIC_errors_t NVIC_SetPriorityGrouping(uint32_t Priority_Grouping); //Done
+NVIC_errors_t NVIC_SetPriorityGrouping(uint32_t Priority_Grouping); 
 
 //NVIC_errors_t NVIC_SystemReset(void);
